@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/404.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CNAME" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_config.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/disqus.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/foot.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/footer.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/google-analytics.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/share.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_includes/skillstree.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_layouts/default.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_layouts/page.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/about.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/archive.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/contact.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/index.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/main.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/script.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/tags.html" charset="UTF-8" />
   </component>
 </project>
