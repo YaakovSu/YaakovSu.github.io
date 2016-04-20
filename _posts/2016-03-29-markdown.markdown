@@ -49,14 +49,12 @@ And like this:
 
 Heading
 ======
-{% endhighlight %}
 
 Heading
 ======
 
 Heading
 -------
-{% endhighlight %}
 
 Heading
 ----------
@@ -234,7 +232,6 @@ If you wanna show a piece of codes, use 4 spaces or 1 tab.
     </header>
     </div>
 </div>
-{% endhighlight %}
 
 ## Others
 
