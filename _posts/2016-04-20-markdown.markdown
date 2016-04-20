@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Markdown语法（转）"
-subtitle: " 刚开始写Blog，就偷懒，我真是够了。不过，这个Blog我感觉作为初始学习Markdown的教程，更好啊！！！ "
+subtitle: " 刚开始写Blog，就偷懒，我真是够了。不过，这个Blog包含了许多常用的Markdown语法，非常适合初学者啊！！！ "
 date: 2016-04-20
 author: Benjamin
 category: 编程
