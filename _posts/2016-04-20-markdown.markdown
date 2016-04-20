@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Markdown教程"
-subtitle: "A brief introduction about Markdown Grammar. "
+title: "Markdown语法（转）"
+subtitle: " Markdown语法的简短介绍. "
 date: 2016-04-20
 author: Benjamin
-category: coding
+category: 编程
 tags: 编程 markdown github
 finished: true
 ---
