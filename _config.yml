@@ -1,7 +1,7 @@
 # Site settings
 title: Yaakov Su
 name: Yaakov Su # your name
-email: youremail@example.com # your email address
+email: yhsu1024@163.com # your email address
 description: >
     A Simple Jekyll Blog Theme. # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
