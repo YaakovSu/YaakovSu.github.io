@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Markdown语法（转）"
-subtitle: "Markdown语法的简短介绍. "
+title: "Markdown"
+subtitle: "Markdown. "
 date: 2016-04-20
 author: Benjamin
-category: 编程
-tags: 编程 markdown github
+category: code
+tags: code markdown github
 finished: true
 ---
 
@@ -49,12 +49,14 @@ And like this:
 
 Heading
 ======
+{% endhighlight %}
 
 Heading
 ======
 
 Heading
 -------
+{% endhighlight %}
 
 Heading
 ----------
@@ -145,7 +147,9 @@ There are three ways to make an unordered list:
 > War is Peace
 
 
+
 > Freedom is Slavery
+
 
 
 > Ignorance is Strength
@@ -162,7 +166,9 @@ You can also do this:
 > * War is Peace
 
 
+
 > * Freedom is Slavery
+
 
 
 > * Ignorance is Stength
@@ -232,6 +238,7 @@ If you wanna show a piece of codes, use 4 spaces or 1 tab.
     </header>
     </div>
 </div>
+{% endhighlight %}
 
 ## Others
 
