@@ -4,7 +4,7 @@ title: "Welcome to Nice Blog"
 subtitle: "A simple Jekyll blog theme."
 date: 2016-03-30
 author: Benjamin
-category: 机器学习
+category: 杂谈
 tags: jekyll github blog
 finished: true
 ---
