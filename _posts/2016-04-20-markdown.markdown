@@ -9,7 +9,10 @@ tags: 编程 markdown github
 finished: true
 ---
 
-## Heading
+## 写在介绍之前
+
+刚开始写Blog，就偷懒，我真是够了。不过，这个Blog我感觉作为初始学习Markdown的教程，更好啊！！！
+
 
 Heading is really simple in Markdown, you can use `#` or `=` or `-`. 
 
