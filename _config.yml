@@ -7,11 +7,11 @@ description: >
 baseurl: "" # the subpath of your site, e.g. /blog
 fileurl: "/YaakovSu.github.io"
 url: "https://yaakovary.com" # the base hostname & protocol for your site
-twitter_username: itisbenjamin1 # your Twitter username
-github_username: itisbenjamin # your Github username
-disqus_username: itisbenjamin # your disqus username
+twitter_username: doG__uS # your Twitter username
+github_username: YaakovSu # your Github username
+disqus_username: yaakovsu # your disqus username
 
-google-analytics: UA-75034651-1 # add it if you have one
+google-analytics: UA-76674098-1 # add it if you have one
 
 skillstree: true # turn on or off the skills tree in about page
 
