@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Markdown Gramma"
+title: "Markdown"
 subtitle: "A brief introduction about Markdown Grammar. "
-date: 2016-03-29
+date: 2016-04-20
 author: Benjamin
 category: coding
 tags: code markdown github
