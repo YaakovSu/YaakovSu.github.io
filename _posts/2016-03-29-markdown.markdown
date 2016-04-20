@@ -1,13 +1,19 @@
 ---
 layout: post
-title: "Markdown Gramma"
-subtitle: "A brief introduction about Markdown Grammar. "
-date: 2016-03-29
+title: "Markdown语法（转）"
+subtitle: "Markdown语法的简短介绍. "
+date: 2016-04-20
 author: Benjamin
-category: coding
-tags: code markdown github
+category: 编程
+tags: 编程 markdown github
 finished: true
 ---
+
+
+
+## 写在开头
+
+刚开始写Blog，就偷懒，我真是够了。不过，这个Blog我感觉作为初始学习`Markdown`的教程，更好啊！！
 
 ## Heading
 
@@ -41,7 +47,6 @@ Like this:
 
 And like this: 
 
-{% highlight md %}
 Heading
 ======
 {% endhighlight %}
@@ -49,7 +54,6 @@ Heading
 Heading
 ======
 
-{% highlight md %}
 Heading
 -------
 {% endhighlight %}
@@ -142,7 +146,9 @@ There are three ways to make an unordered list:
 
 > War is Peace
 
+
 > Freedom is Slavery
+
 
 > Ignorance is Strength
 
@@ -157,7 +163,9 @@ You can also do this:
 
 > * War is Peace
 
+
 > * Freedom is Slavery
+
 
 > * Ignorance is Stength
 
@@ -275,21 +283,21 @@ Then this footnote will show at the end of this post.
 `a     | b     | c     | d`
 
 
-A     | B     | C     | D 
------ | ----- | ----- | -----
-a     | b     | c     | d
+| A    | B    | C    | D    |
+| ---- | ---- | ---- | ---- |
+| a    | b    | c    | d    |
 
 ### Make words at left, center or right
 
 `left      | center       | center       | right`
- 
+
 `:-------- | :----------: | :----------: | -----:`
 
 `a         | b            | c            | d`
 
 
-left      | center       | center       | right 
-:-------- | :----------: | :----------: | -----:
-a         | b            | c            | d
+| left | center | center | right |
+| :--- | :----: | :----: | ----: |
+| a    |   b    |   c    |     d |
 
 
