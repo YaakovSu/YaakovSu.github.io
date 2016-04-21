@@ -58,6 +58,14 @@ hexo generate
 hexo server
 ```
 
+注意：如果hexo server报如下错误，则说明你下载的是hexo2.x版本，请在hexo目录下（例如`D:\hexo`），右键选择`Git Bash`，输入`npm install hexo-deployer-git --save`。
+
+```shell
+Hexo 3.0: ERROR Deployer not found: git
+```
+
+
+
 然后在浏览器输入`localhost:4000`就可以看到部署的网站了。不过博客是在本地的，只能你自己看到。下面要做的就是把博客部署到`Github`上。
 
 ## 创建repository
@@ -95,4 +103,19 @@ hexo deploy
 
 注意：如果修改了本地文件，需要`hexo generate`后才保存。若是需要设置ssh，请查看[官方教程](https://help.github.com/articles/generating-an-ssh-key/)。
 
-上述步骤都进行完了以后，在浏览器里输出`yaakovSu.github.io`就能看到你自己的网站了。是不是感觉直接输入这个地址有点丑啊，如果想拥有自己的域名，请移步
+上述步骤都进行完了以后，在浏览器里输出`yaakovSu.github.io`就能看到你自己的网站了。是不是感觉直接输入这个地址有点丑啊，如果想拥有自己的域名，请移步[设置域名](http://yaakovary.com/%E6%8A%80%E6%9C%AF/dnscreate.html)。
+
+
+
+## 博客主题
+
+部署好了之后，我们发现怎么只有这么一个页面，我该怎么写东西呢？下面介绍主题的设置和内容的书写。设置博客主题可以使用github自带的主题，也可以使用外部的主题。
+
+### github主题
+
+的
+
+### 外部主题
+
+的
+
