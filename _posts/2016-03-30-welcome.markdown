@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "网站使用特点"
+title: "网站使用"
 subtitle: ""
 date: 2016-04-20
 author: Yaakov Su
@@ -9,13 +9,11 @@ tags: 工具
 finished: true
 ---
 
-##
-
-建个Blog网站不告诉你们怎么用，这怎么能行呢？
 
 ## 网站布局
 
-网站
+建个Blog网站不告诉你们怎么用，这怎么能行呢？
+
 
 [Demo](http://benjaminblog.ml/Nice_Blog)
 
