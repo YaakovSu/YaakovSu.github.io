@@ -17,7 +17,7 @@ finished: true
 
 [Demo](http://benjaminblog.ml/Nice_Blog)
 
-![index-page](https://github.com/YaakovSu/YaakovSu.github.io/tree/master/img/firstPage.png)
+![index-page](http://yaakovary.com/img/blog/firstPage.png)
 
 Introduce yourself in `About` page  :
 ![about-page](https://itisbenjamin.github.io/Nice_Blog/img/blog/about.png)
