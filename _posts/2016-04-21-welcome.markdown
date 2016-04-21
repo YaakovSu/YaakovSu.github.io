@@ -48,13 +48,13 @@ finished: true
 <i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/doG__uS)
 
 
-<form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK">
-<input name="optEmail" type="hidden" value="1020093570@qq.com" />
-<input name="payAmount" type="hidden" value="0.5" />
-<input id="title" name="title" type="hidden" value="谢谢各位大大" />
-<input name="memo" type="hidden" value="备注" />
-<input name="pay" type="image" value="转账" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" />
-</form>
+<!--<form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK">-->
+<!--<input name="optEmail" type="hidden" value="1020093570@qq.com" />-->
+<!--<input name="payAmount" type="hidden" value="0.5" />-->
+<!--<input id="title" name="title" type="hidden" value="谢谢各位大大" />-->
+<!--<input name="memo" type="hidden" value="备注" />-->
+<!--<input name="pay" type="image" value="转账" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" />-->
+<!--</form>-->
 
 
 
