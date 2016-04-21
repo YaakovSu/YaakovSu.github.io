@@ -16,43 +16,16 @@ finished: true
 
 
 
-类似的建博客网站的工具很多，比如[jekyll](http://jekyll.bootcss.com/)，Octopress
+类似的建博客网站的工具很多，比如[jekyll](http://jekyll.bootcss.com/)，[Octopress](http://octopress.org/)，[WordPress](https://cn.wordpress.org/)。那我为什么选择hexo呢，当然是逼格高，这名字我喜欢啊。这是玩笑哈，主要的原因是命令简单，仅需要`hexo new` `hexo generate`  `hexo server` `hexo deploy`四个命令就好啦，就连默认的模版都很漂亮，而且jekyll需要非常多的`git`命令，还要去改ruby（因为要转成utf-8），我呢天呢！WordPress 太过臃肿，而且移植性太差。综上，我选择hexo来写自己的Blog。
 
-## 网站布局
+## 如何搭建hexo博客
 
-建个Blog网站不告诉你们怎么用，这怎么能行呢？
+请期待下一节奥。。。=-=。
 
-网站主界面包括个人的一些说明，还有[时间记录](http://yaakovary.com/archive/)，[类别记录](http://yaakovary.com/category/)，[标签记录](http://yaakovary.com/tags/)，[其他工作](http://yaakovary.com/contact/)，[关于我](http://yaakovary.com/about/)，五个子页面。大家如果有什么问题或则建议可以通过点击下面facebook，twitter，weibo，email的图标来联系我，同时欢迎大家follow我的Github，disqus。
 
-![index-page](http://yaakovary.com/img/blog/firstPage.png)
 
- `时间记录` 页面按照时间顺序来记录我写的Blog，大家可以通过点击下面的`Yaakov Su`  返回主页面:
-![archive-page](http://yaakovary.com/img/blog/archive.png)
+## 注意
 
-`类别记录` 页面按照blog的类别来记录，点击下面的`Yaakov Su`  返回主页面:  
-![category-page](http://yaakovary.com/img/blog/category.png)
-
-`标签记录` 页面按照blog的标签来记录，点击下面的`Yaakov Su`  返回主页面:  
-![tags-page](http://yaakovary.com/img/blog/tags.png)
-
-`其他工作` 里记录了一些我做过的其他小项目，欢迎大家去看看:  
-![contact-page](http://yaakovary.com/img/blog/contact.png)
-
-`关于我` 页面记录了我建这个小网站的背景，还有我的一些基本信息:  
-![about-page](http://yaakovary.com/img/blog/about.png)
-
-当然 `404` 页面说明你访问的页面我还没写:  
-![404-page](http://yaakovary.com/img/blog/404.png)
-
-## 评论
-
-如果大家对Blog有什么疑问，欢迎大家进行评论。
-![question-page](http://yaakovary.com/img/blog/question.png)
-
-## 作者
-
-世界那么大，我就想去看看！
-
-<i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/doG__uS)
+本文的hexo搭建是在hexo1.1.3版本上进行的，如果使用早期版本，安装命令有少许不同，请关注我给出的tips。
 
 
