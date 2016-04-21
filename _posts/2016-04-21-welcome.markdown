@@ -55,11 +55,6 @@ finished: true
 <input name="pay" type="image" value="转账" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" />
 </form>
 
-<div class="support-author">
-          <p>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</p>
-            <a class="btn btn-pay" data-toggle="modal" href="#pay-modal">¥ 打赏支持</a>
-          <div class="avatar-list"><a href="/users/d6577135c69b" class="avatar" data-nickname="陈茶" data-created-at="2016-03-03T16:07:48+08:00" data-original-title="" title=""> <img src="http://upload.jianshu.io/users/upload_avatars/1106602/82f7d2259511?imageMogr/thumbnail/90x90/quality/100"></a></div>
-        </div>
-
+<div id="cyReward" role="cylabs" data-use="reward"></div>
 
 
