@@ -5,7 +5,7 @@ subtitle: "Hexo搭建"
 date: 2016-04-21
 author: Yaakov Su
 category: 技术
-tags: 工具 系统
+tags: Hexo 系统
 finished: true
 ---
 
