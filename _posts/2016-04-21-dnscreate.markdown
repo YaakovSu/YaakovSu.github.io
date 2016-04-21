@@ -5,7 +5,7 @@ subtitle: "给自己的小博客一个域名"
 date: 2016-04-21
 author: Yaakov Su
 category: 技术
-tags: Hexo 系统
+tags: hexo 系统
 finished: true
 ---
 
