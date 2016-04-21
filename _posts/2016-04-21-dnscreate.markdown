@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Hexo博客搭建系列教程（二）"
-subtitle: "Hexo搭建"
+title: "Hexo博客搭建系列教程（三）"
+subtitle: "给自己的小博客一个域名"
 date: 2016-04-21
 author: Yaakov Su
 category: 技术
