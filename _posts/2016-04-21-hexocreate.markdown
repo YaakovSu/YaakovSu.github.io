@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "搭建Hexo博客系列教程（二）"
+title: "Hexo博客搭建系列教程（二）"
 subtitle: "Hexo搭建"
 date: 2016-04-21
 author: Yaakov Su
