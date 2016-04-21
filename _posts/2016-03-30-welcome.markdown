@@ -1,27 +1,25 @@
 ---
 layout: post
-title: "Welcome to Nice Blog"
-subtitle: "A simple Jekyll blog theme."
-date: 2016-03-30
-author: Benjamin
+title: "网站使用特点"
+subtitle: "网站简单说明"
+date: 2016-04-20
+author: Yaakov Su
 category: 杂谈
-tags: jekyll github blog
+tags: 工具
 finished: true
 ---
 
-## Welcome
+##  
 
-I think many blog themes are over designed, so I created this one. 
+建个Blog网站不告诉你们怎么用，这怎么能行呢？
 
-Just for using, not showing off.
+## 网站布局
 
-## Nice Blog
-
-A Simple Jekyll Blog Theme.
+网站
 
 [Demo](http://benjaminblog.ml/Nice_Blog)
 
-![index-page](https://itisbenjamin.github.io/Nice_Blog/img/blog/index.png)
+![index-page](https://github.com/YaakovSu/YaakovSu.github.io/tree/master/img/firstPage.com)
 
 Introduce yourself in `About` page  :
 ![about-page](https://itisbenjamin.github.io/Nice_Blog/img/blog/about.png)
