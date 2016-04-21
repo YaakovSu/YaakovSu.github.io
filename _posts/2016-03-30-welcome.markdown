@@ -21,49 +21,30 @@ finished: true
  `时间记录` 页面按照时间顺序来记录我写的Blog，大家可以通过点击下面的`Yaakov Su`  返回主页面:
 ![archive-page](http://yaakovary.com/img/blog/archive.png)
 
-Post will be listed by categories in `Category` page:  
+`类别记录` 页面按照blog的类别来记录，点击下面的`Yaakov Su`  返回主页面:  
 ![category-page](http://yaakovary.com/img/blog/category.png)
 
-Post will be listed by tags in `Tags` page:  
+`标签记录` 页面按照blog的标签来记录，点击下面的`Yaakov Su`  返回主页面:  
 ![tags-page](http://yaakovary.com/img/blog/tags.png)
 
-You can put your `PGP` publickey in `Contact` page:  
+`其他工作` 里记录了一些我做过的其他小项目，欢迎大家去看看:  
 ![contact-page](http://yaakovary.com/img/blog/contact.png)
 
-Posts will be listed by years in `关于我` page:  
+`关于我` 页面记录了我建这个小网站的背景，还有我的一些基本信息:  
 ![about-page](http://yaakovary.com/img/blog/about.png)
 
-Now you have a `404` page and it will jump back to `index` page itself:  
+当然 `404` 页面说明你访问的页面我还没写:  
 ![404-page](http://yaakovary.com/img/blog/404.png)
 
-If you add `finshed: true` in your post header, then an `EOF` container will show under your post like this:  
-<div class="eof"></div>
+## 评论
 
-Or it will show `TBC`:   
-<div class="tbc"></div>
+如果大家对Blog有什么疑问，欢迎大家进行评论。
+![question-page](http://yaakovary.com/img/blog/question.png)
 
-## How to use
+## 作者
 
-Star it, fork it, and download it.
+世界那么大，我就想去看看！
 
-Change the settings in `_config.yml` file and then you can use this theme.
-
-Easy, right? 
-
-If you wanna do more, then change whatever you want. But first, you should know what you are doing. 
-
-If you make all codes a mess, do not worry, just come back and download again.
-
-Have fun.
-
-## Author
-
-A normal person just wanna see this world.
-
-<i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/itisbenjamin1)
-
-## License
-
-Use MIT License.
+<i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/doG__uS)
 
 
