@@ -48,43 +48,12 @@ finished: true
 <i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/doG__uS)
 
 <form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="POST" target="_blank" accept-charset="GBK">
-<input name="optEmail" type="hidden" value="你的支付宝账号" />
-<input name="payAmount" type="hidden" value="默认的捐赠金额" />
-<input id="title" name="title" type="hidden" value="默认显示的付款说明" />
+<input name="optEmail" type="hidden" value="862843541@qq.com" />
+<input name="payAmount" type="hidden" value="0.5" />
+<input id="title" name="title" type="hidden" value="谢谢各位大大" />
 <input name="memo" type="hidden" value="备注" />
 <input name="pay" type="image" value="转账" src="https://img.alipay.com/sys/personalprod/style/mc/btn-index.png" />
 </form>
 
-  <div class ="post-donate">
-      <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
-        <span class="donate_txt">
-           ↑<br>
-           Enjoy it ? Donate me !  欣赏此文？求鼓励，求支持！
-           {% endif %}          
-        </span>
-        <br>
-      </div>  
-  
 
-      <div id="donate_guide" class="donate_bar center hidden">
-          <a href="http://static.ixirong.com/pic/donate/alipay1.webp" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:25%;margin-right:2px;">
-          <img src="http://static.ixirong.com/pic/donate/alipay1.webp" title="支付宝打赏" height="164px" width="164px">
-          </a> 
-      </div>
-
-
-      <div id="donate_guide" class="donate_bar center hidden">
-          <a href="http://static.ixirong.com/pic/donate/wechat.png" title="支付宝打赏" class="fancybox" rel="article0"  >
-          <img src="http://static.ixirong.com/pic/donate/wechat.png" title="支付宝打赏" height="164px" width="164px">
-          </a> 
-      </div>
-  
-      <script type="text/javascript">
-        document.getElementById('btn_donate').onclick = function(){
-          $('#donate_board').addClass('hidden');
-          $('#donate_guide').removeClass('hidden');
-        }
-      </script>
-    </div>
 
