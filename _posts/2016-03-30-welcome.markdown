@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "网站使用特点"
-subtitle: "网站简单说明"
+subtitle: ""
 date: 2016-04-20
 author: Yaakov Su
 category: 杂谈
@@ -9,7 +9,7 @@ tags: 工具
 finished: true
 ---
 
-##  
+##
 
 建个Blog网站不告诉你们怎么用，这怎么能行呢？
 
@@ -19,7 +19,7 @@ finished: true
 
 [Demo](http://benjaminblog.ml/Nice_Blog)
 
-![index-page](https://github.com/YaakovSu/YaakovSu.github.io/tree/master/img/firstPage.com)
+![index-page](https://github.com/YaakovSu/YaakovSu.github.io/tree/master/img/firstPage.png)
 
 Introduce yourself in `About` page  :
 ![about-page](https://itisbenjamin.github.io/Nice_Blog/img/blog/about.png)
