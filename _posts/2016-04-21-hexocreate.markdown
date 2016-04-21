@@ -19,13 +19,41 @@ finished: true
 下载[msysgit](http://code.google.com/p/msysgit/)，并执行安装。Windows下`git`的配置过程参看[Windows下Git安装指南](http://www.cnblogs.com/zhcncn/p/3787849.html)。
 
 ## 安装Node.js
-的
+Windows下面安装Node.js，仅需下载[安装程序](https://nodejs.org/en/)，点击安装就好了。
 
 
 
+##  安装hexo
 
-## 注意
+在电脑任意位置，右键选择`Git Bash`，输入如下命令：
 
-本文的hexo搭建是在hexo1.1.3版本上进行的，如果使用早期版本，安装命令有少许不同，请关注我给出的tips。
+```shell
+npm install -g hexo
+```
+
+##  创建hexo文件夹
+
+在安装完hexo后，在你的计算机上建立hexo的文件夹（例如`D:\hexo`），在`D:\hexo`中右键选择`Git Bash`，执行如下命令：
+
+```shell
+hexo init
+```
 
 
+
+## 安装依赖包
+
+安装相关依赖的方法为：
+
+```shell
+npm install
+```
+
+
+
+依赖安装好了以后，你可以在本地查看搭建的hexo博客了=-=，在hexo目录下（例如`D:\hexo`），右键选择`Git Bash`，执行如下命令：
+
+> ```shell
+> hexo generate
+> hexo server
+> ```
