@@ -53,7 +53,16 @@ npm install
 
 依赖安装好了以后，你可以在本地查看搭建的hexo博客了=-=，在hexo目录下（例如`D:\hexo`），右键选择`Git Bash`，执行如下命令：
 
-> ```shell
-> hexo generate
-> hexo server
-> ```
+```shell
+hexo generate
+hexo server
+```
+
+然后在浏览器输入`localhost:4000`就可以看到部署的网站了。不过博客是在本地的，只能你自己看到。下面要做的就是把博客部署到`Github`上。
+
+## 创建repository
+
+我默认大家都有`Github`的帐号=-=，所以注册`Github`帐号的过程就不写了。创建一个以你github名字命名的`repository`，例如，我的名字叫`YaakovSu`，所以我建的repository的名字为`YaakovSu.github.io`。
+
+![repository](http://yaakovary.com/img/blog/createRepository.png)
+
