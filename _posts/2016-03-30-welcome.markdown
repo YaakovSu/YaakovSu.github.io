@@ -14,12 +14,11 @@ finished: true
 
 建个Blog网站不告诉你们怎么用，这怎么能行呢？
 
-
-[Demo](http://benjaminblog.ml/Nice_Blog)
+网站主界面包括个人的一些说明，还有[时间记录](http://yaakovary.com/archive/)，[类别记录](http://yaakovary.com/category/)，[标签记录](http://yaakovary.com/tags/)，[其他工作](http://yaakovary.com/contact/)，[关于我](http://yaakovary.com/about/)，五个子页面。大家如果有什么问题或则建议可以通过点击下面facebook，twitter，weibo，email的图标来联系我，同时欢迎大家follow我的Github，disqus。
 
 ![index-page](http://yaakovary.com/img/blog/firstPage.png)
 
-Introduce yourself in `About` page  :
+ `时间记录` 页面按照时间顺序来记录我写的Blog  :
 ![about-page](https://itisbenjamin.github.io/Nice_Blog/img/blog/about.png)
 
 And you can turn on or off your skills tree in `_config.yml` :  
