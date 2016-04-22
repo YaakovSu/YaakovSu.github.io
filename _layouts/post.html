@@ -14,13 +14,6 @@ layout: default
 		<i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-pulse"></i></span>˚C</span>
 	</div>
 
-        {% if page.tags %}
-        <div class="post-tags">
-        {% for tag in page.tags %}
-		<a class="post-tags-item" href="/tags/">{{ tag }}</a>
-        {% endfor %}
-	{% endif %}</div>
-
 		<p><a class="link" href="{{ site.baseurl }}/archive/">时间记录</a> /
 			<a class="link" href="{{ site.baseurl }}/category/">类别记录</a> /
 			<a class="link" href="{{ site.baseurl }}/tags/">标签记录</a> /
@@ -28,6 +21,14 @@ layout: default
 			<a class="link" href="{{ site.baseurl }}/about/">关于我</a>/
 			<a class="link" href="{{ site.baseurl }}/">Yaakov Su</a>
 		</p>
+
+        {% if page.tags %}
+        <div class="post-tags">
+        {% for tag in page.tags %}
+		<a class="post-tags-item" href="/tags/">{{ tag }}</a>
+        {% endfor %}
+	{% endif %}</div>
+
     </center>
     
 </header>
