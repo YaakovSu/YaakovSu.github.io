@@ -127,7 +127,7 @@ hexo deploy
 
 最后，你可以通过`yourname.github.io`上的主页了，例如：
 
-[](![web_site](http:// yaakovarysu.github.io))
+[yaakovarysu.github.io](![web_site](http:// yaakovarysu.github.io))
 
 ### 外部主题
 
