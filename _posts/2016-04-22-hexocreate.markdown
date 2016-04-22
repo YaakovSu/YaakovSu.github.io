@@ -155,7 +155,7 @@ fatal: failed to push som refs to.......
 git pull origin master
 ```
 
-
+`Jekyll`的使用请查看[Jekyll模板系统](http://beiyuu.com/github-pages/)。
 
 ##  域名设置
 
