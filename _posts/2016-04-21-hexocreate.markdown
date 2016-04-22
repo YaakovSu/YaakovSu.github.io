@@ -5,7 +5,7 @@ subtitle: "Hexo搭建"
 date: 2016-04-21
 author: Yaakov Su
 category: 技术
-tags: hexo 系统
+tags: Hexo 系统
 finished: true
 ---
 
@@ -113,7 +113,21 @@ hexo deploy
 
 ### github主题
 
-的
+首先登录自己的Github中的`Yourname.github.io`，点击`Setting`：
+
+![github-setting](http://yaakovary.com/img/blog/githubsetting.png)
+
+之后，创建自己的页面：
+
+![github-theme](http://yaakovary.com/img/blog/githubTheme1.png)
+
+然后，点击继续，选择主题。（由于我使用了外部主题，所以后面的操作请自行进行）。
+
+![github-themePage](http://yaakovary.com/img/blog/githubThemePage.png)
+
+最后，你可以通过`yourname.github.io`上的主页了，例如：
+
+[](![web_site](http:// yaakovarysu.github.io))
 
 ### 外部主题
 
