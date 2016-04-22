@@ -15,6 +15,8 @@ finished: true
 
 首先告诉大家一个好消息，大家可以使用[Lantern](https://www.getlantern.org/)。大家不要去错了，是有钓鱼网站的。。。
 
+同时，用`markdown`写网站的Blog，推荐大家使用[Typora](http://www.typora.io/)来写，所见即所得，超级好用。同时支持`Mac`、`Linux`、`Windows`。
+
 ##  评论功能
 
 还在写=-=
