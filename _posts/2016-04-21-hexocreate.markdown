@@ -131,5 +131,32 @@ hexo deploy
 
 ### 外部主题
 
+针对外部主题的话，大家可以使用[Jekyll Themes](http://jekyllthemes.org/)中提供的一系列主题。但是在你下载好了以后，如何作为你博客网站的主题呢？其实说白了就是将主题上传到你的`Github`中的`yourname.github.io`上。
+
+首先，将你本地下载的主题文件夹设置为git的repository，具体的在`git bash`中输入：
+
+```git
+git init
+git remote add origin https://github.com/YaakovarySu/YaakovarySu.github.io
+git pull origin master
+git add .
+git push origin master
+```
+
+如果你在执行git push origin master时，报错：
+
+```
+fatal: failed to push som refs to.......
+```
+
+你就多执行几次
+
+```
+git pull origin master
+```
 
 
+
+##  域名设置
+
+请移步[设置域名](http://yaakovary.com/%E6%8A%80%E6%9C%AF/dnscreate.html)。
