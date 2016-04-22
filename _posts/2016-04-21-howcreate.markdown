@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Hexo博客搭建系列教程（一）"
-subtitle: "Hexo介绍"
+title: "Hexo博客搭建系列教程（一）Hexo介绍"
+subtitle: ""
 date: 2016-04-21
 author: Yaakov Su
 category: 技术
