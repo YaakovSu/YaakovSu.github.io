@@ -1,0 +1,18 @@
+---
+layout: post
+title: "安卓版发布"
+subtitle: ""
+date: 2016-04-25
+author: Yaakov Su
+category: 移动app
+tags: android
+finished: true
+---
+
+
+## 安卓版本发布
+
+好消息，好消息！Yaakov Su小站的安卓端app应用发布了，下载链接为：[Yaakov app](http://yun.baidu.com/share/link?shareid=1838537401&uk=4264326512)。欢迎大家下载！
+
+
+
