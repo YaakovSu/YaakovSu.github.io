@@ -6,8 +6,8 @@ date: 2016-06-15
 author: Yaakov Su
 category: 计算广告
 tags: 笔记 斯坦福
-finished: false
----------------
+finished: true
+---
 
 
 ## 计算广告

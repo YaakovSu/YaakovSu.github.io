@@ -6,8 +6,8 @@ date: 2016-06-15
 author: Yaakov Su
 category: 计算广告
 tags: 反作弊 资料
-finished: false
----------------
+finished: true
+---
 
 
 # 记录
