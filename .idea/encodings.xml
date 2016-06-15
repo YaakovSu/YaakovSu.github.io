@@ -17,6 +17,10 @@
     <file url="file://$PROJECT_DIR$/_posts/2016-04-21-welcome.markdown" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_posts/2016-04-22-dnscreate.markdown" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/_posts/2016-04-22-hexocreate.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_posts/2016-04-25-android.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_posts/2016-06-15-computeAdvertise.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_posts/2016-06-15-computerAdvertiseSpam.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_posts/2016-06-15-computerAdvertiseStudy.markdown" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/about.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/archive.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/category.html" charset="UTF-8" />
@@ -24,6 +28,9 @@
     <file url="file://$PROJECT_DIR$/index.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/main.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/js/script.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pre_posts/2016-04-25-computeAdvertise.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pre_posts/2016-06-15-computerAdvertiseSpam.markdown" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pre_posts/2016-06-15-computerAdvertiseStudy.markdown" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/tags.html" charset="UTF-8" />
   </component>
 </project>
