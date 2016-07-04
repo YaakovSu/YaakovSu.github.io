@@ -1,7 +1,7 @@
 ---
 layout: post
-title: ""
-subtitle: "Intellij使用中遇到的问题及解决方法"
+title: "Intellij使用中遇到的问题及解决方法"
+subtitle: ""
 date: 2016-07-04
 author: Yaakov Su
 category: Intellij
