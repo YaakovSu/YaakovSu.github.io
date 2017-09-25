@@ -364,6 +364,7 @@ set和dict类似，也是一组key的集合，但不存储value。由于key不�
 >>> s.remove(4)
 >>> s
 {1, 2, 3}
+
 {% endhighlight %}
 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：
 {% highlight html %}
