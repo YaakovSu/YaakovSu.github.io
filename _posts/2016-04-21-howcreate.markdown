@@ -3,7 +3,7 @@ layout: post
 title: "Hexo博客搭建系列教程（一）Hexo介绍"
 subtitle: ""
 date: 2016-04-21
-author: Yaakov Su
+author: 苏爱马
 category: 技术
 tags: hexo 系统 
 finished: true

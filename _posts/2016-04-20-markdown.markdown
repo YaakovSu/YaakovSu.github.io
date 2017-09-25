@@ -3,7 +3,7 @@ layout: post
 title: "Markdown语法（转）"
 subtitle: " 刚开始写Blog，就偷懒，我真是够了。不过，这个Blog包含了许多常用的Markdown语法，非常适合初学者啊！！！ "
 date: 2016-04-20
-author: Benjamin
+author: 苏爱马
 category: 编程
 tags: 编程 markdown github
 finished: true

@@ -3,7 +3,7 @@ layout: post
 title: "安卓版发布"
 subtitle: ""
 date: 2016-04-25
-author: Yaakov Su
+author: 苏爱马
 category: 移动app
 tags: android
 finished: true

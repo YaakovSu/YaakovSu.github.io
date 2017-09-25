@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Intellij使用中遇到的问题及解决方法"
+title: "Python学习笔记（-）"
 subtitle: ""
-date: 2016-07-04
-author: Yaakov Su
-category: Intellij
-tags: 笔记 IDEA PyCharm
+date: 2015-06-09
+author: 苏爱马
+category: Python
+tags: 笔记 Python PyCharm
 finished: true
 ---
 

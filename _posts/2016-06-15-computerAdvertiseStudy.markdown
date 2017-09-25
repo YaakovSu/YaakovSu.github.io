@@ -3,7 +3,7 @@ layout: post
 title: "斯坦福大学计算广告课程学习笔记"
 subtitle: ""
 date: 2016-06-15
-author: Yaakov Su
+author: 苏爱马
 category: 计算广告
 tags: 笔记 斯坦福
 finished: true

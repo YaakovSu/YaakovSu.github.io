@@ -3,7 +3,7 @@ layout: post
 title: "反作弊初期一些参考资料"
 subtitle: ""
 date: 2016-06-15
-author: Yaakov Su
+author: 苏爱马
 category: 计算广告
 tags: 反作弊 资料
 finished: true
