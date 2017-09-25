@@ -10,8 +10,8 @@ finished: true
 ---
 
 很多统计使用python都能达到事半功倍的效果，所以开始了python的学习，下面是对python的一些学习笔记，对自己学习进行一个总结，也为以后更快的查找到相关方法。
-##python学习
-###print（）
+## python学习
+### print（）
 print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出：
 {% highlight html %}
 >>> print('The quick brown fox', 'jumps over', 'the lazy dog')
@@ -21,7 +21,7 @@ The quick brown fox jumps over the lazy dog
 print()会依次打印每个字符串，遇到逗号“,”会输出一个空格，因此，输出的字符串是这样拼起来的：
 
 
-###input（）
+### input（）
 输入
 
 现在，你已经可以用print()输出你想要的结果了。但是，如果要让用户从电脑输入一些字符怎么办？Python提供了一个input()，可以让用户输入字符串，并存放到一个变量里。比如输入用户的名字：
@@ -38,11 +38,11 @@ name = input('please enter your name: ')
 print('hello,', name)
 {% endhighlight %}
 
-###Python程序大小写敏感
+### Python程序大小写敏感
 如果写错了大小写，程序会报错照。约定俗成的管理，应该始终坚持使用4个空格的缩进。Python使用缩进来组织代码块，请务必遵守约定俗成的习惯，坚持使用4个空格的缩进。
 在文本编辑器中，需要设置把Tab自动转换为4个空格，确保不混用Tab和空格。
 
-###Python允许用'''...'''
+### Python允许用'''...'''
 如果字符串内部有很多换行，用\n写在一行里不好阅读，为了简化，Python允许用'''...'''的格式表示多行内容，可以自己试试：
 
 {% highlight html %}
@@ -64,20 +64,20 @@ line3''')
 
 
 
-###空值
+### 空值
 
 空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。
 
 此外，Python还提供了列表、字典等多种数据类型，还允许创建自定义数据类型，我们后面会继续讲到。
 
 
-###常量
+### 常量
 
 在Python中，通常用全部大写的变量名表示常量。
 
 对于单个字符的编码，Python提供了ord()函数获取字符的整数表示，chr()函数把编码转换为对应的字符：
 
-###编码问题
+### 编码问题
 以Unicode表示的str通过encode()方法可以编码为指定的bytes，例如：
 {% highlight html %}
 >>> 'ABC'.encode('ascii')
@@ -119,7 +119,7 @@ len()函数计算的是str的字符数，如果换成bytes，len()函数就计�
 
 第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
 
-###格式化
+### 格式化
 如果你不太确定应该用什么，%s永远起作用，它会把任何数据类型转换为字符串：
 {% highlight html %}
 >>> 'Age: %s. Gender: %s' % (25, True)
@@ -130,7 +130,7 @@ len()函数计算的是str的字符数，如果换成bytes，len()函数就计�
 >>> 'growth rate: %d %%' % 7
 'growth rate: 7 %'
 {% endhighlight %}
-###list
+### list
 比如，列出班里所有同学的名字，就可以用一个list表示：
 {% highlight html %}
 >>> classmates = ['Michael', 'Bob', 'Tracy']
@@ -200,7 +200,7 @@ list元素也可以是另一个list，比如：
 要拿到'php'可以写p[1]或者s[2][1]，因此s可以看成是一个二维数组，类似的还有三维、四维……数组，不过很少用到。
 
 
-###tuple
+### tuple
 Tuple是另一种有序列表，称为元组。tuple和list非常类似，但是tuple一旦初始化就不能修改，比如同样是列出同学的名字：
 {% highlight html %}
 >>> classmates = ('Michael', 'Bob', 'Tracy')
@@ -231,7 +231,7 @@ Tuple是另一种有序列表，称为元组。tuple和list非常类似，但是
 {% endhighlight %}
 变得是list的值，并不是tuple的指向！
 
-###if语句
+### if语句
 完全可以用elif做更细致的判断：
 {% highlight html %}
 age = 3
@@ -253,7 +253,7 @@ elif <条件判断3>:
 else:
     <执行4>
 {% endhighlight %}
-###循环
+### 循环
 Python的循环有两种，一种是for...in循环，依次把list或tuple中的每个元素迭代出来，看例子：
 {% highlight html %}
 names = ['Michael', 'Bob', 'Tracy']
@@ -272,7 +272,7 @@ print(sum)
 {% endhighlight %}
 在循环内部变量n不断自减，直到变为-1时，不再满足while条件，循环退出。
 
-###dict 和 set
+### dict 和 set
 Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。
 
 用dict实现，只需要一个“名字”-“成绩”的对照表，直接根据名字查找成绩，无论这个表有多大，查找速度都不会变慢。用Python写一个dict如下：
@@ -333,7 +333,7 @@ False
 查找和插入的速度极快，不会随着key的增加而增加；
 需要占用大量的内存，内存浪费多。
 
-###set
+### set
 set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。
 
 要创建一个set，需要提供一个list作为输入集合：
