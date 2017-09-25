@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "win64位机安装python2.7下的numpy，scipy找不到python路径的解决办法"
+title: "mac安装jdk1.6的问题"
 subtitle: ""
 date: 2014-11-12
 author: 苏爱马
