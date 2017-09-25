@@ -10,7 +10,8 @@ finished: true
 ---
 
 很多统计使用python都能达到事半功倍的效果，所以开始了python的学习，下面是对python的一些学习笔记，对自己学习进行一个总结，也为以后更快的查找到相关方法。
-## python学习
+## Python学习
+
 ### print（）
 print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出：
 {% highlight html %}
