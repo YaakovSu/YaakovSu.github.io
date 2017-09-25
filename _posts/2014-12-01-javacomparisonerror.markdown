@@ -10,15 +10,20 @@ finished: true
 ---
 
 转载自：[fanzitao的专栏](http://blog.csdn.net/fanzitao/article/details/8040201)
+
 Brother Zeng遇到的错误：
 java.lang.IllegalArgumentException: Comparison method violates its general contract!
 网上查到一个解释：
 Description: The sorting algorithm used by java.util.Arrays.sort and (indirectly) by java.util.Collections.sort has been replaced. The new sort implementation may throw an IllegalArgumentException if it detects a Comparable that violates the Comparable contract. The previous implementation silently ignored such a situation. If the previous behavior is desired, you can use the new system property, java.util.Arrays.useLegacyMergeSort, to restore previous mergesort behavior.
 也就是说jdk 7的sort函数的实现变了，造成了这个问题，具体原因未知。
-改一下系统设置，还是选择使用老版本的排序方法，在代码前面加上这么一句话：System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
+改一下系统设置，还是选择使用老版本的排序方法，在代码前面加上这么一句话：
+
+{% highlight html %}
+System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+{% endhighlight %}
 
 
 public class CodeForBrotherZeng {
