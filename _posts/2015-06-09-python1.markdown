@@ -252,7 +252,7 @@ elif <条件判断3>:
     <执行3>
 else:
     <执行4>
-
+{% endhighlight %}
 ###循环
 Python的循环有两种，一种是for...in循环，依次把list或tuple中的每个元素迭代出来，看例子：
 {% highlight html %}
@@ -350,7 +350,7 @@ set和dict类似，也是一组key的集合，但不存储value。由于key不�
 >>> s
 {1, 2, 3}
 {% endhighlight %}
-通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：
+通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果，通过remove(key)方法可以删除元素：：
 {% highlight html %}
 >>> s.add(4)
 >>> s
@@ -358,13 +358,9 @@ set和dict类似，也是一组key的集合，但不存储value。由于key不�
 >>> s.add(4)
 >>> s
 {1, 2, 3, 4}
-{% endhighlight %}
-通过remove(key)方法可以删除元素：
-{% highlight html %}
 >>> s.remove(4)
 >>> s
 {1, 2, 3}
-
 {% endhighlight %}
 set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：
 {% highlight html %}
