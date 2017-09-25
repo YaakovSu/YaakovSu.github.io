@@ -1,0 +1,12 @@
+---
+layout: post
+title: "win64位机安装python2.7下的numpy，scipy找不到python路径的解决办法"
+subtitle: ""
+date: 2014-11-12
+author: 苏爱马
+category: JDK
+tags: 笔记 JDK
+finished: true
+---
+由于集群是1.6的环境，而我自己的jar是jdk1.7环境下的，所以需要安装一个1.6。查找网络，发现mac是有jdk1.6的。下载地址在：
+http://support.apple.com/kb/DL1572?viewlocale=zh_CN&locale=zh_CN.亲测可用
