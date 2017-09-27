@@ -1,0 +1,536 @@
+---
+layout: post
+title: "Python学习笔记（二）"
+subtitle: ""
+date: 2015-06-12
+author: 苏爱马
+category: Python
+tags: 笔记 Python
+finished: true
+---
+
+
+## Python学习（二）
+
+1、引用
+函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：
+
+{% highlight html %}
+>>> a = abs # 变量a指向abs函数
+>>> a(-1) # 所以也可以通过a调用abs函数
+1
+{% endhighlight %}
+常用函数还包括数据类型转换函数，比如int()函数可以把其他数据类型转换为整数：
+
+{% highlight html %}
+>>> int('123')
+123
+>>> int(12.34)
+12
+>>> float('12.34')
+12.34
+>>> str(1.23)
+'1.23'
+>>> str(100)
+'100'
+>>> bool(1)
+True
+>>> bool('')
+False
+{% endhighlight %}
+max()可以接收任意多个参数，并返回最大的那个。
+2、空函数
+空函数
+
+如果想定义一个什么事也不做的空函数，可以用pass语句：
+{% highlight html %}
+def nop():
+    pass
+{% endhighlight %}
+pass语句什么都不做，那有什么用？实际上pass可以用来作为占位符，比如现在还没想好怎么写函数的代码，就可以先放一个pass，让代码能运行起来。
+
+pass还可以用在其他语句里，比如：
+{% highlight html %}
+if age >= 18:
+    pass
+{% endhighlight %}
+缺少了pass，代码运行就会有语法错误。
+
+3、参数类型检查
+对参数类型做检查，只允许整数和浮点数类型的参数。数据类型检查可以用内置函数isinstance()实现：
+
+{% highlight html %}
+def my_abs(x):
+    if not isinstance(x, (int, float)):
+        raise TypeError('bad operand type')
+    if x >= 0:
+        return x
+    else:
+        return -x
+{% endhighlight %}
+4、返回多个值
+返回多个值
+
+函数可以返回多个值吗？答案是肯定的。
+
+比如在游戏中经常需要从一个点移动到另一个点，给出坐标、位移和角度，就可以计算出新的新的坐标：
+
+{% highlight html %}
+import math
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+{% endhighlight %}
+import math语句表示导入math包，并允许后续代码引用math包里的sin、cos等函数。
+
+然后，我们就可以同时获得返回值：
+
+{% highlight html %}
+>>> x, y = move(100, 100, 60, math.pi / 6)
+>>> print(x, y)
+151.96152422706632 70.0
+{% endhighlight %}
+但其实这只是一种假象，Python函数返回的仍然是单一值：
+{% highlight html %}
+>>> r = move(100, 100, 60, math.pi / 6)
+>>> print(r)
+(151.96152422706632, 70.0)
+{% endhighlight %}
+原来返回值是一个tuple！但是，在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。
+
+5、默认参数
+
+默认参数
+
+新的power(x, n)函数定义没有问题，但是，旧的调用代码失败了，原因是我们增加了一个参数，导致旧的代码因为缺少一个参数而无法正常调用：
+{% highlight html %}
+>>> power(5)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: power() missing 1 required positional argument: 'n'
+{% endhighlight %}
+Python的错误信息很明确：调用函数power()缺少了一个位置参数n。
+
+这个时候，默认参数就排上用场了。由于我们经常计算x2，所以，完全可以把第二个参数n的默认值设定为2：
+{% highlight html %}
+def power(x, n=2):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s * x
+    return s
+{% endhighlight %}
+这样，当我们调用power(5)时，相当于调用power(5, 2)：
+{% highlight html %}
+>>> power(5)
+25
+>>> power(5, 2)
+25
+{% endhighlight %}
+而对于n > 2的其他情况，就必须明确地传入n，比如power(5, 3)。
+
+设置默认参数时，有几点要注意：
+
+一是必选参数在前，默认参数在后，否则Python的解释器会报错（思考一下为什么默认参数不能放在必选参数前面）；
+
+二是如何设置默认参数。
+
+当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。
+
+使用默认参数有什么好处？最大的好处是能降低调用函数的难度。
+
+定义默认参数要牢记一点：默认参数必须指向不变对象！
+6、可变参数
+
+在Python函数中，还可以定义可变参数。顾名思义，可变参数就是传入的参数个数是可变的，可以是1个、2个到任意个，还可以是0个。
+
+我们以数学题为例子，给定一组数字a，b，c……，请计算a2 + b2 + c2 + ……。
+
+要定义出这个函数，我们必须确定输入的参数。由于参数个数不确定，我们首先想到可以把a，b，c……作为一个list或tuple传进来，这样，函数可以定义如下：
+{% highlight html %}
+def calc(numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+{% endhighlight %}
+但是调用的时候，需要先组装出一个list或tuple：
+{% highlight html %}
+>>> calc([1, 2, 3])
+14
+>>> calc((1, 3, 5, 7))
+84
+{% endhighlight %}
+如果利用可变参数，调用函数的方式可以简化成这样：
+{% highlight html %}
+>>> calc(1, 2, 3)
+14
+>>> calc(1, 3, 5, 7)
+84
+{% endhighlight %}
+所以，我们把函数的参数改为可变参数：
+{% highlight html %}
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+{% endhighlight %}
+定义可变参数和定义一个list或tuple参数相比，仅仅在参数前面加了一个*号。在函数内部，参数numbers接收到的是一个tuple，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括0个参数：
+{% highlight html %}
+>>> calc(1, 2)
+5
+>>> calc()
+0
+{% endhighlight %}
+如果已经有一个list或者tuple，要调用一个可变参数怎么办？可以这样做：
+{% highlight html %}
+>>> nums = [1, 2, 3]
+>>> calc(nums[0], nums[1], nums[2])
+14
+{% endhighlight %}
+这种写法当然是可行的，问题是太繁琐，所以Python允许你在list或tuple前面加一个*号，把list或tuple的元素变成可变参数传进去：
+{% highlight html %}
+>>> nums = [1, 2, 3]
+>>> calc(*nums)
+14
+{% endhighlight %}
+*nums表示把nums这个list的所有元素作为可变参数传进去。这种写法相当有用，而且很常见。
+
+7、关键字参数
+
+关键字参数
+
+可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。而关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。请看示例：
+{% highlight html %}
+def person(name, age, **kw):
+    print('name:', name, 'age:', age, 'other:', kw)
+{% endhighlight %}
+函数person除了必选参数name和age外，还接受关键字参数kw。在调用该函数时，可以只传入必选参数：
+{% highlight html %}
+>>> person('Michael', 30)
+name: Michael age: 30 other: {}
+{% endhighlight %}
+也可以传入任意个数的关键字参数：
+{% highlight html %}
+>>> person('Bob', 35, city='Beijing')
+name: Bob age: 35 other: {'city': 'Beijing'}
+>>> person('Adam', 45, gender='M', job='Engineer')
+name: Adam age: 45 other: {'gender': 'M', 'job': 'Engineer'}
+{% endhighlight %}
+关键字参数有什么用？它可以扩展函数的功能。比如，在person函数里，我们保证能接收到name和age这两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填项外，其他都是可选项，利用关键字参数来定义这个函数就能满足注册的需求。
+
+和可变参数类似，也可以先组装出一个dict，然后，把该dict转换为关键字参数传进去：
+{% highlight html %}
+>>> extra = {'city': 'Beijing', 'job': 'Engineer'}
+>>> person('Jack', 24, city=extra['city'], job=extra['job'])
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+{% endhighlight %}
+当然，上面复杂的调用可以用简化的写法：
+{% highlight html %}
+>>> extra = {'city': 'Beijing', 'job': 'Engineer'}
+>>> person('Jack', 24, **extra)
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+{% endhighlight %}
+**extra表示把extra这个dict的所有key-value用关键字参数传入到函数的**kw参数，kw将获得一个dict，注意kw获得的dict是extra的一份拷贝，对kw的改动不会影响到函数外的extra。
+
+命名关键字参数
+
+对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了哪些，就需要在函数内部通过kw检查。
+
+仍以person()函数为例，我们希望检查是否有city和job参数：
+{% highlight html %}
+def person(name, age, **kw):
+    if 'city' in kw:
+        # 有city参数
+        pass
+    if 'job' in kw:
+        # 有job参数
+        pass
+    print('name:', name, 'age:', age, 'other:', kw)
+{% endhighlight %}
+但是调用者仍可以传入不受限制的关键字参数：
+{% highlight html %}
+>>> person('Jack', 24, city='Beijing', addr='Chaoyang', zipcode=123456)
+{% endhighlight %}
+如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收city和job作为关键字参数。这种方式定义的函数如下：
+{% highlight html %}
+def person(name, age, *, city, job):
+    print(name, age, city, job)
+{% endhighlight %}
+和关键字参数**kw不同，命名关键字参数需要一个特殊分隔符*，*后面的参数被视为命名关键字参数。
+
+调用方式如下：
+{% highlight html %}
+>>> person('Jack', 24, city='Beijing', job='Engineer')
+Jack 24 Beijing Engineer
+{% endhighlight %}
+命名关键字参数必须传入参数名，这和位置参数不同。如果没有传入参数名，调用将报错：
+{% highlight html %}
+>>> person('Jack', 24, 'Beijing', 'Engineer')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: person() takes 2 positional arguments but 4 were given
+{% endhighlight %}
+由于调用时缺少参数名city和job，Python解释器把这4个参数均视为位置参数，但person()函数仅接受2个位置参数。
+
+命名关键字参数可以有缺省值，从而简化调用：
+{% highlight html %}
+def person(name, age, *, city='Beijing', job):
+    print(name, age, city, job)
+{% endhighlight %}
+由于命名关键字参数city具有默认值，调用时，可不传入city参数：
+{% highlight html %}
+>>> person('Jack', 24, job='Engineer')
+Jack 24 Beijing Engineer
+{% endhighlight %}
+使用命名关键字参数时，要特别注意，*不是参数，而是特殊分隔符。如果缺少*，Python解释器将无法识别位置参数和命名关键字参数：
+{% highlight html %}
+def person(name, age, city, job):
+    # 缺少 *，city和job被视为位置参数
+    pass
+{% endhighlight %}
+要注意定义可变参数和关键字参数的语法：
+
+*args是可变参数，args接收的是一个tuple；
+
+**kw是关键字参数，kw接收的是一个dict。
+
+以及调用函数时如何传入可变参数和关键字参数的语法：
+
+可变参数既可以直接传入：func(1, 2, 3)，又可以先组装list或tuple，再通过*args传入：func(*(1, 2, 3))；
+
+关键字参数既可以直接传入：func(a=1, b=2)，又可以先组装dict，再通过**kw传入：func(**{'a': 1, 'b': 2})。
+
+使用*args和**kw是Python的习惯写法，当然也可以用其他参数名，但最好使用习惯用法。
+
+命名的关键字参数是为了限制调用者可以传入的参数名，同时可以提供默认值。
+
+定义命名的关键字参数不要忘了写分隔符*，否则定义的将是位置参数。
+
+
+
+9、切片
+
+对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。
+{% highlight html %}
+>>> L[0:3]
+['Michael', 'Sarah', 'Tracy']
+{% endhighlight %}
+L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。
+
+如果第一个索引是0，还可以省略：
+{% highlight html %}
+>>> L[:3]
+['Michael', 'Sarah', 'Tracy']
+{% endhighlight %}
+类似的，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片，试试：
+{% highlight html %}
+>>> L[-2:]
+['Bob', 'Jack']
+>>> L[-2:-1]
+['Bob']
+{% endhighlight %}
+记住倒数第一个元素的索引是-1。
+
+前10个数，每两个取一个：
+{% highlight html %}
+>>> L[:10:2]
+[0, 2, 4, 6, 8]
+{% endhighlight %}
+tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：
+{% highlight html %}
+>>> (0, 1, 2, 3, 4, 5)[:3]
+(0, 1, 2)
+{% endhighlight %}
+字符串'xxx'也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：
+{% highlight html %}
+>>> 'ABCDEFG'[:3]
+'ABC'
+>>> 'ABCDEFG'[::2]
+'ACEG'
+{% endhighlight %}
+10、迭代
+list这种数据类型虽然有下标，但很多其他数据类型是没有下标的，但是，只要是可迭代对象，无论有无下标，都可以迭代，比如dict就可以迭代：
+{% highlight html %}
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> for key in d:
+...     print(key)
+...
+a
+c
+b
+{% endhighlight %}
+因为dict的存储不是按照list的方式顺序排列，所以，迭代出的结果顺序很可能不一样。
+
+默认情况下，dict迭代的是key。如果要迭代value，可以用for value in d.values()，如果要同时迭代key和value，可以用for k, v in d.items()。
+
+那么，如何判断一个对象是可迭代对象呢？方法是通过collections模块的Iterable类型判断：
+{% highlight html %}
+>>> from collections import Iterable
+>>> isinstance('abc', Iterable) # str是否可迭代
+True
+>>> isinstance([1,2,3], Iterable) # list是否可迭代
+True
+>>> isinstance(123, Iterable) # 整数是否可迭代
+False
+{% endhighlight %}
+最后一个小问题，如果要对list实现类似Java那样的下标循环怎么办？Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身：
+{% highlight html %}
+>>> for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+...
+0 A
+1 B
+2 C
+{% endhighlight %}
+上面的for循环里，同时引用了两个变量，在Python里是很常见的，比如下面的代码：
+{% highlight html %}
+>>> for x, y in [(1, 1), (2, 4), (3, 9)]:
+...     print(x, y)
+...
+1 1
+2 4
+3 9
+{% endhighlight %}
+11、列表生成式
+列表生成式即List Comprehensions，是Python内置的非常简单却强大的可以用来创建list的生成式。
+
+举个例子，要生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]可以用list(range(1, 11))：
+{% highlight html %}
+>>> list(range(1, 11))
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+{% endhighlight %}
+但如果要生成[1x1, 2x2, 3x3, ..., 10x10]怎么做？方法一是循环：
+{% highlight html %}
+>>> L = []
+>>> for x in range(1, 11):
+...    L.append(x * x)
+...
+>>> L
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+{% endhighlight %}
+但是循环太繁琐，而列表生成式则可以用一行语句代替循环生成上面的list：
+{% highlight html %}
+>>> [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+{% endhighlight %}
+写列表生成式时，把要生成的元素x * x放到前面，后面跟for循环，就可以把list创建出来，十分有用，多写几次，很快就可以熟悉这种语法。
+
+for循环后面还可以加上if判断，这样我们就可以筛选出仅偶数的平方：
+{% highlight html %}
+>>> [x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+{% endhighlight %}
+还可以使用两层循环，可以生成全排列：
+{% highlight html %}
+>>> [m + n for m in 'ABC' for n in 'XYZ']
+['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+{% endhighlight %}
+列表生成式也可以使用两个变量来生成list：
+{% highlight html %}
+>>> d = {'x': 'A', 'y': 'B', 'z': 'C' }
+>>> [k + '=' + v for k, v in d.items()]
+['y=B', 'x=A', 'z=C']
+{% endhighlight %}
+最后把一个list中所有的字符串变成小写：
+{% highlight html %}
+>>> L = ['Hello', 'World', 'IBM', 'Apple']
+>>> [s.lower() for s in L]
+['hello', 'world', 'ibm', 'apple']
+{% endhighlight %}
+12、生成器
+所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。
+
+要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：
+{% highlight html %}
+>>> L = [x * x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x * x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x1022ef630>
+{% endhighlight %}
+创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。
+
+我们可以直接打印出list的每一个元素，但我们怎么打印出generator的每一个元素呢？
+
+如果要一个一个打印出来，可以通过next()函数获得generator的下一个返回值：
+
+当然，上面这种不断调用next(g)实在是太变态了，正确的方法是使用for循环，因为generator也是可迭代对象：
+{% highlight html %}
+>>> g = (x * x for x in range(10))
+>>> for n in g:
+...     print(n)
+...
+0
+1
+4
+9
+16
+25
+36
+{% endhighlight %}
+第二种方法：
+斐波拉契数列用列表生成式写不出来，但是，用函数把它打印出来却很容易：
+{% highlight html %}
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+{% endhighlight %}
+上面的函数可以输出斐波那契数列的前N个数：
+{% highlight html %}
+>>> fib(6)
+1
+1
+2
+3
+5
+8
+'done'
+{% endhighlight %}
+仔细观察，可以看出，fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。
+
+也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为yield b就可以了：
+{% highlight html %}
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+{% endhighlight %}
+这就是定义generator的另一种方法。如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：
+{% highlight html %}
+>>> f = fib(6)
+>>> f
+<generator object fib at 0x104feaaa0>
+{% endhighlight %}
+这里，最难理解的就是generator和函数的执行流程不一样。函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
+
+13、迭代器
+生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
+
+把list、dict、str等Iterable变成Iterator可以使用iter()函数：
+
+这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。
+
+Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。
+
+小结
+
+凡是可作用于for循环的对象都是Iterable类型；
+
+凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列；
+
+集合数据类型如list、dict、str等是Iterable但不是Iterator，不过可以通过iter()函数获得一个Iterator对象。
+
+Python的for循环本质上就是通过不断调用next()函数实现的。
+
