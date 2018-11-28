@@ -9,7 +9,6 @@ tags: 最大似然 梯度下降 监督学习
 finished: true
 ---
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## 适用场景
 逻辑回归虽然带有`回归`，但却是一个分类模型。通过监督学习的方法来估计模型参数，由于其易实现、可解释性强、预测时间短的优点，只需进行特征工程，就能达到不错的效果，在`计算广告`行业里受到广泛使用。
