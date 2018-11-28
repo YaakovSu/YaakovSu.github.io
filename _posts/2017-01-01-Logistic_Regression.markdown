@@ -9,6 +9,7 @@ tags: 最大似然 梯度下降 监督学习
 finished: true
 ---
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 ## 适用场景
 逻辑回归虽然带有`回归`，但却是一个分类模型。通过监督学习的方法来估计模型参数，由于其易实现、可解释性强、预测时间短的优点，只需进行特征工程，就能达到不错的效果，在`计算广告`行业里受到广泛使用。
@@ -18,7 +19,7 @@ finished: true
 
 那对于二分类问题，我们期望的y取值是离散二值`[0,1]`。那如果我们能用一个函数，将y=wx+b映射[0,1]，并且这个函数具有很好的可微性，我们不就可以处理二分类问题了么？！
 
-我们找到了值=这个函数，这个函数就是大名鼎鼎的`Logistic函数(logistic function)`，也称为`Sigmoid函数(sigmoid function)`。
+我们找到了这个函数，这个函数就是大名鼎鼎的***Logistic函数(logistic function)***，也称为***Sigmoid函数(sigmoid function)***。
 
 $$g(z)=\frac{1}{1+e^{-z}}$$
 
