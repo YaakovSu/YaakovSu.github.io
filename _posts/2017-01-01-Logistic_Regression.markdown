@@ -45,7 +45,7 @@ sigmoid函数如下图所示：
 
 世界那么大，我就想去看看！
 
-<i class="fa fa-twitter"></i>&nbsp;&nbsp;[Twitter](https://twitter.com/doG__uS)
+<i class="fa fa-github"></i>&nbsp;&nbsp;[My Github](https://github.com/YaakovSu)
 
 
 
