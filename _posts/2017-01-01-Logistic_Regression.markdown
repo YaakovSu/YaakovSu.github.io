@@ -40,6 +40,7 @@ sigmoid函数如下图所示：
 我们将sigmoid函数带入上式，发现我们得到的损失函数是非凸的。也就是该函数有很多极小值，如果采用梯度下降求解的话，会导致陷入局部最优解。
 ![avatar](http://52myx.cn/img/blog/lr/pingfangimg.jpeg)
 
+
 ## 作者
 
 世界那么大，我就想去看看！
