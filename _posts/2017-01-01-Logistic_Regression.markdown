@@ -22,6 +22,7 @@ finished: true
 我们找到了这个函数，这个函数就是大名鼎鼎的***Logistic函数(logistic function)***，也称为***Sigmoid函数(sigmoid function)***。
 
 $$g(z)=\frac{1}{1+e^{-z}}$$
+<img src="http://chart.googleapis.com/chart?cht=tx&chl= g(z)=\frac{1}{1+e^{-z}}" style="border:none;">
 
 ![avatar](http://52myx.cn/img/blog/lr/LRtuidao.jpeg)
 
