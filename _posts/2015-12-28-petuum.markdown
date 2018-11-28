@@ -1,0 +1,95 @@
+---
+layout: post
+title: "在Redhat的Hadoop上安装Petuum笔记"
+subtitle: ""
+date: 2015-12-28
+author: 苏爱马
+category: 工具
+tags: redhat hadoop petuum
+finished: true
+---
+在介绍安装Petuum之前，首先介绍一下Petuum。Petuum 是卡耐基梅隆大学教授邢波组的项目。Petuum 是一个分布式机器学习平台,目标是为大规模机器学习提供一个通用的算法和系统接口,简化分布式机器学习程序的实现。
+
+
+
+详细介绍:http://petuum.github.io/index-zh.html
+相关技术细节:http://petuum.github.io/research.html
+相关源码介绍:http://yinxusen.github.io/blog/2014/01/17/petuum-source-code-read-and-initial-test-result/
+
+
+
+
+petuum 关键特征
+•Bösen:基于受限异步一致性协议的分布式键值存储系统,可支持数据并行分布式机器学习编程。(存储)
+Strads: 动态参数更新调度器,可支持模型并行分布式机器学习编程。(调度)
+
+
+petuum 支持的算法
+Topic Models:LDA、MedLDA
+Deep Learning:Deep Neural Network (DNN)
+Matrix Factorization and Sparse Coding:Matrix Factorization (collaborativefiltering)、negative Matrix Factorization (NMF)、Sparse Coding
+Regression:Lasso Regression
+Metric Learning:Distance Metric Learning
+Clustering:K-means Clustering
+Classification: Random Forest、 Logistic Regression、 SVM 、 Multi-class LogisticRegression
+Redhat上安装命令
+由于petuum官网只是提供了ubuntu的安装过程。而我们的Hadoop集群是在redhat上安装的。所以，我写了这个笔记来记录我在redhat上安装Petuum时所使用的命令和安装的包。
+
+sudo yum install libtool
+sudo yum install openmpi openmpi-devel openmpi-libs
+
+mpi的地址加入到path
+export PATH="$PATH:/usr/lib64/openmpi/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib64/openmpi/lib/"
+export LD_LIBRARY_PATH="/home/lib"
+
+
+sudo yum -y install bzip2-devel
+
+mkdir petuum
+
+
+
+安装grandle
+export GRADLE_HOME=/opt/gradle/gradle-2.6（gradle的位置）
+export PATH=$GRADLE_HOME/bin:$PATH
+
+编译命令
+cd strads
+make
+cd ../bosen/third_party
+make
+cd ../../bosen
+cp defns.mk.template defns.mk
+make
+cd ..
+sudo vim bosen/defns.mk
+JAVA_HOME = /usr/java/jdk1.7.0_79
+HADOOP_HOME = /home/edu/hadoop-2.6.0
+#HAS_HDFS = # Leave empty to build without hadoop.
+HAS_HDFS = -DHAS_HADOOP # Uncomment this line to enable hadoop
+
+
+cd bosen
+make clean
+make
+
+
+cd bosen/app/path_to_app
+make clean
+make
+
+
+
+之后就可以跑petuum提供的算法了。
+
+
+
+***作者***
+
+世界那么大，我就想去看看！
+
+<i class="fa fa-github"></i>&nbsp;&nbsp;[My Github](https://github.com/YaakovSu)
+
+
+

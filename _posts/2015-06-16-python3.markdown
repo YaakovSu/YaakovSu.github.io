@@ -1,0 +1,745 @@
+---
+layout: post
+title: "Python学习笔记（三）"
+subtitle: ""
+date: 2015-06-16
+author: 苏爱马
+category: Python
+tags: 笔记 Python
+finished: true
+---
+
+1、排序
+
+
+
+Python内置的sorted()函数就可以对list进行排序：
+
+>>> sorted([36, 5, -12, 9, -21])
+[-21, -12, 5, 9, 36]
+此外，sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序，例如按绝对值大小排序：
+
+>>> sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+我们给sorted传入key函数，即可实现忽略大小写的排序：
+
+>>> sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower)
+['about', 'bob', 'Credit', 'Zoo']
+要进行反向排序，不必改动key函数，可以传入第三个参数reverse=True：
+
+>>> sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True)
+['Zoo', 'Credit', 'bob', 'about']
+
+
+2、匿名函数
+
+
+
+在Python中，对匿名函数提供了有限支持。还是以map()函数为例，计算f(x)=x2时，除了定义一个f(x)的函数外，还可以直接传入匿名函数：
+
+>>> list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+通过对比可以看出，匿名函数lambda x: x * x实际上就是：
+
+def f(x):
+    return x * x
+关键字lambda表示匿名函数，冒号前面的x表示函数参数。
+
+匿名函数有个限制，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。
+
+
+
+3、装饰器
+
+
+
+现在，假设我们要增强now()函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改now()函数的定义，这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。
+
+本质上，decorator就是一个返回函数的高阶函数。
+
+>>> def now():
+...     print('2015-3-25')
+...
+>>> f = now
+>>> f()
+2015-3-25
+所以，我们要定义一个能打印日志的decorator，可以定义如下：
+
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+观察上面的log，因为它是一个decorator，所以接受一个函数作为参数，并返回一个函数。我们要借助Python的@语法，把decorator置于函数的定义处：
+
+@log
+def now():
+    print('2015-3-25')
+调用now()函数，不仅会运行now()函数本身，还会在运行now()函数前打印一行日志：
+
+>>> now()
+call now():
+2015-3-25
+把@log放到now()函数的定义处，相当于执行了语句：
+
+now = log(now)
+由于log()是一个decorator，返回一个函数，所以，原来的now()函数仍然存在，只是现在同名的now变量指向了新的函数，于是调用now()将执行新函数，即在log()函数中返回的wrapper()函数。
+
+wrapper()函数的参数定义是(*args, **kw)，因此，wrapper()函数可以接受任意参数的调用。在wrapper()函数内，首先打印日志，再紧接着调用原始函数。
+
+以上两种decorator的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有__name__等属性，但你去看经过decorator装饰之后的函数，它们的__name__已经从原来的'now'变成了'wrapper'：
+
+>>> now.__name__
+'wrapper'
+因为返回的那个wrapper()函数名字就是'wrapper'，所以，需要把原始函数的__name__等属性复制到wrapper()函数中，否则，有些依赖函数签名的代码执行就会出错。
+
+不需要编写wrapper.__name__ = func.__name__这样的代码，Python内置的functools.wraps就是干这个事的，所以，一个完整的decorator的写法如下：
+
+import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+对于任意函数，都可以通过类似func(*args, **kw)的形式调用它，无论它的参数是如何定义的
+
+或者针对带参数的decorator：
+
+import functools
+
+def log(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+import functools是导入functools模块。模块的概念稍候讲解。现在，只需记住在定义wrapper()的前面加上@functools.wraps(func)即可。
+
+4、偏函数
+
+
+
+假设要转换大量的二进制字符串，每次都传入int(x, base=2)非常麻烦，于是，我们想到，可以定义一个int2()的函数，默认把base=2传进去：
+
+def int2(x, base=2):
+    return int(x, base)
+这样，我们转换二进制就非常方便了：
+
+>>> int2('1000000')
+64
+>>> int2('1010101')
+85
+functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
+
+>>> import functools
+>>> int2 = functools.partial(int, base=2)
+>>> int2('1000000')
+64
+>>> int2('1010101')
+85
+所以，简单总结functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。
+
+注意到上面的新的int2函数，仅仅是把base参数重新设定默认值为2，但也可以在函数调用时传入其他值：
+
+>>> int2('1000000', base=10)
+1000000
+最后，创建偏函数时，实际上可以接收函数对象、*args和**kw这3个参数，当传入：
+
+int2 = functools.partial(int, base=2)
+实际上固定了int()函数的关键字参数base，也就是：
+
+int2('10010')
+相当于：
+
+kw = { 'base': 2 }
+int('10010', **kw)
+当函数的参数个数太多，需要简化时，使用functools.partial可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。
+
+
+
+
+
+5、作用域
+
+
+
+作用域
+
+
+在一个模块中，我们可能会定义很多函数和变量，但有的函数和变量我们希望给别人使用，有的函数和变量我们希望仅仅在模块内部使用。在Python中，是通过_前缀来实现的。
+
+正常的函数和变量名是公开的（public），可以被直接引用，比如：abc，x123，PI等；
+
+类似__xxx__这样的变量是特殊变量，可以被直接引用，但是有特殊用途，比如上面的__author__，__name__就是特殊变量，hello模块定义的文档注释也可以用特殊变量__doc__访问，我们自己的变量一般不要用这种变量名；
+
+类似_xxx和__xxx这样的函数或变量就是非公开的（private），不应该被直接引用，比如_abc，__abc等；
+
+之所以我们说，private函数和变量“不应该”被直接引用，而不是“不能”被直接引用，是因为Python并没有一种方法可以完全限制访问private函数或变量，但是，从编程习惯上不应该引用private函数或变量。
+
+private函数或变量不应该被别人引用，那它们有什么用呢？请看例子：
+
+def _private_1(name):
+    return 'Hello, %s' % name
+
+def _private_2(name):
+    return 'Hi, %s' % name
+
+def greeting(name):
+    if len(name) > 3:
+        return _private_1(name)
+    else:
+        return _private_2(name)
+我们在模块里公开greeting()函数，而把内部逻辑用private函数隐藏起来了，这样，调用greeting()函数不用关心内部的private函数细节，这也是一种非常有用的代码封装和抽象的方法，即：
+
+外部不需要引用的函数全部定义成private，只有外部需要引用的函数才定义为public。
+
+6、引用外部包
+
+
+
+.在python脚本里面使用那些不再PYTHONPATH上的第三方包或是自己编写的模块
+
+以使用/home/lxc/software/program/python/getopt_exam.py为例。
+
+$python
+
+>>>import sys
+
+>>>sys.path.append(“/home/lxc/software/program/python”)
+
+>>>import getopt_exam
+
+>>>getopt_exam.version()
+
+
+
+7、windows下python的相关环境配置
+
+默认情况下，在windows下安装python之后，系统并不会自动添加相应的环境变量。此时不能在命令行直接使用python命令。
+
+
+
+1. 首先需要在系统中注册python环境变量：假设python的安装路径为c:\python2.6，则修改我的电脑->属性->高级->环境变量->系统变量中的PATH为:
+
+
+
+(为了在命令行模式下运行Python命令，需要将python.exe所在的目录附加到PATH这个环境变量中。) 
+
+
+
+PATH=PATH;c:\python26
+
+上述环境变量设置成功之后，就可以在命令行直接使用python命令。或执行"python *.py"运行python脚本了。
+
+
+
+2. 此时，还是只能通过"python *.py"运行python脚本，若希望直接运行*.py，只需再修改另一个环境变量PATHEXT:
+
+
+
+PATHEXT=PATHEXT;.PY;.PYM
+
+
+
+3. 另外，在使用python的过程中，可能需要经常查看某个命令的帮助文档，如使用help('print')查看print命令的使用说明。默认安装的python无法查看帮助文档，尚需进行简单的配置：
+
+
+
+在python安装目录下，找到python25.chm，使用
+
+
+
+hh -decompile .python26.chm
+
+将其反编译出来，然后将其所在的目录加入到上面提到的PATH环境变量中即可。
+
+
+
+4. 如何使Python解释器能直接import默认安装路径以外的第三方模块？
+
+
+
+为了能import默认安装路径以外的第三方的模块（如自己写的模块），需要新建PYTHONPATH环境变量，值为这个模块所在的目录
+
+
+
+
+
+8、类
+
+可以自由地给一个实例变量绑定属性，比如，给实例bart绑定一个name属性：
+
+>>> bart.name = 'Bart Simpson'
+>>> bart.name
+'Bart Simpson'
+由于类可以起到模板的作用，因此，可以在创建实例的时候，把一些我们认为必须绑定的属性强制填写进去。通过定义一个特殊的__init__方法，在创建实例的时候，就把name，score等属性绑上去：
+
+class Student(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+注意到__init__方法的第一个参数永远是self，表示创建的实例本身，因此，在__init__方法内部，就可以把各种属性绑定到self，因为self就指向创建的实例本身。
+
+有了__init__方法，在创建实例的时候，就不能传入空的参数了，必须传入与__init__方法匹配的参数，但self不需要传，Python解释器自己会把实例变量传进去：
+
+>>> bart = Student('Bart Simpson', 59)
+>>> bart.name
+'Bart Simpson'
+>>> bart.score
+59
+和普通的函数相比，在类中定义的函数只有一点不同，就是第一个参数永远是实例变量self，并且，调用时，不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以，你仍然可以用默认参数、可变参数、关键字参数和命名关键字参数。
+
+如果要让内部属性不被外部访问，可以把属性的名称前加上两个下划线__，在Python中，实例的变量名如果以__开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问，
+
+
+
+9、获取对象的信息
+
+首先，我们来判断对象类型，使用type()函数：
+
+基本类型都可以用type()判断：
+
+>>> type(123)
+<class 'int'>
+>>> type('str')
+<class 'str'>
+>>> type(None)
+<type(None) 'NoneType'>
+使用isinstance()
+对于class的继承关系来说，使用type()就很不方便。我们要判断class的类型，可以使用isinstance()函数。能用type()判断的基本类型也可以用isinstance()判断。
+
+并且还可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是list或者tuple：
+
+>>> isinstance([1, 2, 3], (list, tuple))
+True
+>>> isinstance((1, 2, 3), (list, tuple))
+True
+
+
+使用dir()
+如果要获得一个对象的所有属性和方法，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法：
+
+>>> dir('ABC')
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+
+
+仅把属性和方法列出来是不够的，配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态：
+
+>>> class MyObject(object):
+...     def __init__(self):
+...         self.x = 9
+...     def power(self):
+...         return self.x * self.x
+...
+>>> obj = MyObject()
+紧接着，可以测试该对象的属性：
+
+>>> hasattr(obj, 'x') # 有属性'x'吗？
+True
+>>> obj.x
+9
+>>> hasattr(obj, 'y') # 有属性'y'吗？
+False
+>>> setattr(obj, 'y', 19) # 设置一个属性'y'
+>>> hasattr(obj, 'y') # 有属性'y'吗？
+True
+>>> getattr(obj, 'y') # 获取属性'y'
+19
+>>> obj.y # 获取属性'y'
+19
+10、__slots__
+
+使用__slots__
+但是，如果我们想要限制实例的属性怎么办？比如，只允许对Student实例添加name和age属性。
+
+为了达到限制的目的，Python允许在定义class的时候，定义一个特殊的__slots__变量，来限制该class实例能添加的属性：
+
+class Student(object):
+    __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+然后，我们试试：
+
+>>> s = Student() # 创建新的实例
+>>> s.name = 'Michael' # 绑定属性'name'
+>>> s.age = 25 # 绑定属性'age'
+>>> s.score = 99 # 绑定属性'score'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Student' object has no attribute 'score'
+由于'score'没有被放到__slots__中，所以不能绑定score属性，试图绑定score将得到AttributeError的错误。
+
+使用__slots__要注意，__slots__定义的属性仅对当前类实例起作用，对继承的子类是不起作用的：
+
+>>> class GraduateStudent(Student):
+...     pass
+...
+>>> g = GraduateStudent()
+>>> g.score = 9999
+除非在子类中也定义__slots__，这样，子类实例允许定义的属性就是自身的__slots__加上父类的__slots__
+
+11、使用@property
+
+有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？对于追求完美的Python程序员来说，这是必须要做到的！
+
+还记得装饰器（decorator）可以给函数动态加上功能吗？对于类的方法，装饰器一样起作用。Python内置的@property装饰器就是负责把一个方法变成属性调用的：
+
+class Student(object):
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+@property的实现比较复杂，我们先考察如何使用。把一个getter方法变成属性，只需要加上@property就可以了，此时，@property本身又创建了另一个装饰器@score.setter，负责把一个setter方法变成属性赋值，于是，我们就拥有一个可控的属性操作：
+
+>>> s = Student()
+>>> s.score = 60 # OK，实际转化为s.set_score(60)
+>>> s.score # OK，实际转化为s.get_score()
+60
+>>> s.score = 9999
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!
+注意到这个神奇的@property，我们在对实例属性操作的时候，就知道该属性很可能不是直接暴露的，而是通过getter和setter方法来实现的。
+
+还可以定义只读属性，只定义getter方法，不定义setter方法就是一个只读属性：
+
+class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2015 - self._birth
+上面的birth是可读写属性，而age就是一个只读属性，因为age可以根据birth和当前时间计算出来。
+
+小结
+@property广泛应用在类的定义中，可以让调用者写出简短的代码，同时保证对参数进行必要的检查，这样，程序运行时就减少了出错的可能性。
+
+12、枚举类
+
+定义一个class类型，然后，每个常量都是class的一个唯一实例。Python提供了Enum类来实现这个功能：
+
+from enum import Enum
+
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+这样我们就获得了Month类型的枚举类，可以直接使用Month.Jan来引用一个常量，或者枚举它的所有成员：
+
+for name, member in Month.__members__.items():
+    print(name, '=>', member, ',', member.value)
+value属性则是自动赋给成员的int常量，默认从1开始计数。
+
+果需要更精确地控制枚举类型，可以从Enum派生出自定义类：
+
+from enum import Enum, unique
+
+@unique
+class Weekday(Enum):
+    Sun = 0 # Sun的value被设定为0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+@unique装饰器可以帮助我们检查保证没有重复值。
+
+访问这些枚举类型可以有若干种方法：
+
+>>> day1 = Weekday.Mon
+>>> print(day1)
+Weekday.Mon
+>>> print(Weekday.Tue)
+Weekday.Tue
+>>> print(Weekday['Tue'])
+Weekday.Tue
+>>> print(Weekday.Tue.value)
+2
+>>> print(day1 == Weekday.Mon)
+True
+>>> print(day1 == Weekday.Tue)
+False
+>>> print(Weekday(1))
+Weekday.Mon
+>>> print(day1 == Weekday(1))
+True
+>>> Weekday(7)
+Traceback (most recent call last):
+  ...
+ValueError: 7 is not a valid Weekday
+>>> for name, member in Weekday.__members__.items():
+...     print(name, '=>', member)
+...
+Sun => Weekday.Sun
+Mon => Weekday.Mon
+Tue => Weekday.Tue
+Wed => Weekday.Wed
+Thu => Weekday.Thu
+Fri => Weekday.Fri
+Sat => Weekday.Sat
+可见，既可以用成员名称引用枚举常量，又可以直接根据value的值获得枚举常量。
+
+Enum可以把一组相关常量定义在一个class中，且class不可变，而且成员可以直接比较
+
+
+
+13、记录错误
+
+记录错误
+如果不捕获错误，自然可以让Python解释器来打印出错误堆栈，但程序也被结束了。既然我们能捕获错误，就可以把错误堆栈打印出来，然后分析错误原因，同时，让程序继续执行下去。
+
+Python内置的logging模块可以非常容易地记录错误信息：
+
+# err_logging.py
+
+import logging
+
+def foo(s):
+    return 10 / int(s)
+
+def bar(s):
+    return foo(s) * 2
+
+def main():
+    try:
+        bar('0')
+    except Exception as e:
+        logging.exception(e)
+
+main()
+print('END')
+通过配置，logging还可以把错误记录到日志文件里，方便事后排查
+
+
+
+14、抛出错误（包括自定义错误，使用raise）
+
+抛出错误
+因为错误是class，捕获一个错误就是捕获到该class的一个实例。因此，错误并不是凭空产生的，而是有意创建并抛出的。Python的内置函数会抛出很多类型的错误，我们自己编写的函数也可以抛出错误。
+
+如果要抛出错误，首先根据需要，可以定义一个错误的class，选择好继承关系，然后，用raise语句抛出一个错误的实例：
+
+# err_raise.py
+class FooError(ValueError):
+    pass
+
+def foo(s):
+    n = int(s)
+    if n==0:
+        raise FooError('invalid value: %s' % s)
+    return 10 / n
+
+foo('0')
+执行，可以最后跟踪到我们自己定义的错误：
+
+$ python3 err_raise.py 
+Traceback (most recent call last):
+  File "err_throw.py", line 11, in <module>
+    foo('0')
+  File "err_throw.py", line 8, in foo
+    raise FooError('invalid value: %s' % s)
+__main__.FooError: invalid value: 0
+只有在必要的时候才定义我们自己的错误类型。如果可以选择Python已有的内置的错误类型（比如ValueError，TypeError），尽量使用Python内置的错误类型。
+
+
+
+15、调试
+
+方法一：
+
+第一种方法简单直接粗暴有效，就是用print()把可能有问题的变量打印出来看看：
+
+def foo(s):
+    n = int(s)
+    print('>>> n = %d' % n)
+    return 10 / n
+
+def main():
+    foo('0')
+
+main()
+执行后在输出中查找打印的变量值：
+
+$ python3 err.py
+>>> n = 0
+Traceback (most recent call last):
+  ...
+ZeroDivisionError: integer division or modulo by zero
+用print()最大的坏处是将来还得删掉它，想想程序里到处都是print()，运行结果也会包含很多垃圾信息。所以，我们又有第二种方法。
+
+方法二：断言
+
+断言
+
+
+凡是用print()来辅助查看的地方，都可以用断言（assert）来替代：
+
+def foo(s):
+    n = int(s)
+    assert n != 0, 'n is zero!'
+    return 10 / n
+
+def main():
+    foo('0')
+assert的意思是，表达式n != 0应该是True，否则，根据程序运行的逻辑，后面的代码肯定会出错。
+
+如果断言失败，assert语句本身就会抛出AssertionError：
+
+$ python3 err.py
+Traceback (most recent call last):
+  ...
+AssertionError: n is zero!
+程序中如果到处充斥着assert，和print()相比也好不到哪去。不过，启动Python解释器时可以用-O参数来关闭assert：
+
+$ python3 -O err.py
+Traceback (most recent call last):
+  ...
+ZeroDivisionError: division by zero
+关闭后，你可以把所有的assert语句当成pass来看。
+
+
+
+方法三：logging
+
+
+
+logging
+
+
+把print()替换为logging是第3种方式，和assert比，logging不会抛出错误，而且可以输出到文件：
+
+import logging
+
+s = '0'
+n = int(s)
+logging.info('n = %d' % n)
+print(10 / n)
+logging.info()就可以输出一段文本。运行，发现除了ZeroDivisionError，没有任何信息。怎么回事？
+
+别急，在import logging之后添加一行配置再试试：
+
+import logging
+logging.basicConfig(level=logging.INFO)
+看到输出了：
+
+$ python3 err.py
+INFO:root:n = 0
+Traceback (most recent call last):
+  File "err.py", line 8, in <module>
+    print 10 / n
+ZeroDivisionError: division by zero
+这就是logging的好处，它允许你指定记录信息的级别，有debug，info，warning，error等几个级别，当我们指定level=INFO时，logging.debug就不起作用了。同理，指定level=WARNING后，debug和info就不起作用了。这样一来，你可以放心地输出不同级别的信息，也不用删除，最后统一控制输出哪个级别的信息。
+
+logging的另一个好处是通过简单的配置，一条语句可以同时输出到不同的地方，比如console和文件。
+
+
+
+方法四：启动Python的调试器pdb
+
+
+
+pdb
+
+
+第4种方式是启动Python的调试器pdb，让程序以单步方式运行，可以随时查看运行状态。我们先准备好程序：
+
+# err.py
+s = '0'
+n = int(s)
+print 10 / n
+然后启动：
+
+$ python3 -m pdb err.py
+> /Users/michael/Github/learn-python3/samples/debug/err.py(2)<module>()
+-> s = '0'
+以参数-m pdb启动后，pdb定位到下一步要执行的代码-> s = '0'。输入命令l来查看代码：
+
+(Pdb) l
+  1     # err.py
+  2  -> s = '0'
+  3     n = int(s)
+  4     print 10 / n
+输入命令n可以单步执行代码：
+
+(Pdb) n
+> /Users/michael/Github/learn-python3/samples/debug/err.py(3)<module>()
+-> n = int(s)
+(Pdb) n
+> /Users/michael/Github/learn-python3/samples/debug/err.py(4)<module>()
+-> print 10 / n
+任何时候都可以输入命令p 变量名来查看变量：
+
+(Pdb) p s
+'0'
+(Pdb) p n
+0
+输入命令q结束调试，退出程序：
+
+(Pdb) q
+这种通过pdb在命令行调试的方法理论上是万能的，但实在是太麻烦了，如果有一千行代码，要运行到第999行得敲多少命令啊。还好，我们还有另一种调试方法。
+
+pdb.set_trace()
+这个方法也是用pdb，但是不需要单步执行，我们只需要import pdb，然后，在可能出错的地方放一个pdb.set_trace()，就可以设置一个断点：
+
+# err.py
+import pdb
+
+s = '0'
+n = int(s)
+pdb.set_trace() # 运行到这里会自动暂停
+print 10 / n
+运行代码，程序会自动在pdb.set_trace()暂停并进入pdb调试环境，可以用命令p查看变量，或者用命令c继续运行：
+
+$ python3 err.py 
+> /Users/michael/Github/learn-python3/samples/debug/err.py(7)<module>()
+-> print 10 / n
+(Pdb) p n
+0
+(Pdb) c
+Traceback (most recent call last):
+  File "err.py", line 7, in <module>
+    print 10 / n
+ZeroDivisionError: division by zero
+这个方式比直接启动pdb单步调试效率要高很多，但也高不到哪去。
+
+***作者***
+
+世界那么大，我就想去看看！
+
+<i class="fa fa-github"></i>&nbsp;&nbsp;[My Github](https://github.com/YaakovSu)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
