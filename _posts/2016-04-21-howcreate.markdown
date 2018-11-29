@@ -20,7 +20,7 @@ finished: true
 
 ## 如何搭建hexo博客
 
-具体搭建过程在[hexo搭建](http://yaakovary.com/%E6%8A%80%E6%9C%AF/hexocreate.html)中。
+具体搭建过程在[hexo搭建](http://52myx.cn/%E6%8A%80%E6%9C%AF/hexocreate.html)中。
 
 
 
